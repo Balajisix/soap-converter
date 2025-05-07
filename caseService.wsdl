@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<definitions name="CaseInversionService"
+  targetNamespace="http://www.examples.com/wsdl/CaseInversionService.wsdl"
+  xmlns:tns="http://www.examples.com/wsdl/CaseInversionService.wsdl"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+  <message name="invertCaseRequest">
+    <part name="input" type="xsd:string"/>
+  </message>
+
+  <message name="invertCaseResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+
+  <portType name="CaseInversionPortType">
+    <operation name="invertCase">
+      <input message="tns:invertCaseRequest"/>
+      <output message="tns:invertCaseResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="CaseInversionServiceSoapBinding" type="tns:CaseInversionPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="invertCase">
+      <soap:operation soapAction="invertCase"/>
+      <input>
+        <soap:body namespace="urn:CaseInversionService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body namespace="urn:CaseInversionService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="CaseInversionService">
+    <port name="CaseInversionServiceSoapPort" binding="tns:CaseInversionServiceSoapBinding">
+      <soap:address location="http://localhost:8000/wsdl"/>
+    </port>
+  </service>
+</definitions>
