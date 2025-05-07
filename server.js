@@ -8,7 +8,7 @@ const app = express();
 const PORT = 8000;
 
 app.use(cors({
-  origin: "https://soap-converter.vercel.app",
+  origin: "https://balajisix.github.io",
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'SOAPAction']
 }));
