@@ -7,7 +7,11 @@ const cors = require("cors");
 const app = express();
 const PORT = 8000;
 
-app.use(cors());
+app.use(cors({
+  origin: "https://soap-converter.vercel.app",
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'SOAPAction']
+}));
 
 const service = {
   CaseInversionService: {
